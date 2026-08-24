@@ -77,9 +77,8 @@ std::vector<int> parse_line(const std::string& line);
         cublasStatus_t status = call;                                                                          \
         fflush(stdout); \
         if (status != CUBLAS_STATUS_SUCCESS) {                                                                 \
-            fprintf(stderr,                                                                                    \
-                    "ERROR: cuBLAS call \"%s\" failed in line %d of file %s with error code (%d).\n",          \
-                    #call, __LINE__, __FILE__, status);                                                        \
+            fprintf(stderr, "%s:%d: %s -> cuBLAS status %d\n", __FILE__,                                       \
+                    __LINE__, #call, static_cast<int>(status));                                                \
             exit(EXIT_FAILURE);                                                                                \
         }                                                                                                      \
     }
